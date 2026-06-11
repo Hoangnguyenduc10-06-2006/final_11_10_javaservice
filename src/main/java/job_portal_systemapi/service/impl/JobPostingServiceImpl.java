@@ -1,6 +1,7 @@
 package job_portal_systemapi.service.impl;
 
 import job_portal_systemapi.enums.JobStatusEnum;
+import job_portal_systemapi.exception.ForbiddenException;
 import job_portal_systemapi.exception.NotFoundJob;
 import job_portal_systemapi.exception.NotFoundUser;
 import job_portal_systemapi.model.dto.request.CreateJobRequest;
@@ -89,7 +90,7 @@ public class JobPostingServiceImpl implements JobPostingService {
                 .orElseThrow(() -> new NotFoundJob("Không tìm thấy tin tuyển dụng"));
 
         if (!job.getEmployer().getId().equals(employer.getId())) {
-            throw new RuntimeException("Bạn không có quyền xem tin này");
+            throw new ForbiddenException("Bạn không có quyền xem tin này");
         }
 
         return JobResponse.builder()
@@ -114,10 +115,10 @@ public class JobPostingServiceImpl implements JobPostingService {
                 .orElseThrow(() -> new NotFoundUser("Không tìm thấy employer"));
 
         JobPosting job = jobPostingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy tin tuyển dụng"));
+                .orElseThrow(() -> new NotFoundJob("Không tìm thấy tin tuyển dụng"));
 
         if (!job.getEmployer().getId().equals(employer.getId())) {
-            throw new RuntimeException("Bạn không có quyền sửa tin này");
+            throw new ForbiddenException("Bạn không có quyền sửa tin này");
         }
 
         job.setTitle(request.getTitle());
@@ -155,9 +156,8 @@ public class JobPostingServiceImpl implements JobPostingService {
                         new NotFoundJob("Không tìm thấy tin tuyển dụng"));
 
         if (!job.getEmployer().getId().equals(employer.getId())) {
-            throw new RuntimeException(
-                    "Bạn không có quyền xóa tin này");
-        }
+            throw new ForbiddenException("Bạn không có quyền xóa tin này")
+                    ;}
 
         job.setStatus(JobStatusEnum.CLOSED);
 
@@ -199,5 +199,56 @@ public class JobPostingServiceImpl implements JobPostingService {
                 .build();
     }
 
+    @Override
+    public List<JobResponse> getAllJobsForAdmin() {
+        return jobPostingRepository.findAll()
+                .stream()
+                .map(job -> JobResponse.builder()
+                        .id(job.getId())
+                        .title(job.getTitle())
+                        .description(job.getDescription())
+                        .salaryRange(job.getSalaryRange())
+                        .status(job.getStatus())
+                        .employerUsername(job.getEmployer().getUsername())
+                        .build())
+                .toList();
+    }
 
+    @Override
+    public JobResponse approveJob(Long id) {
+        JobPosting job = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundJob("Không tìm thấy tin tuyển dụng"));
+
+        job.setStatus(JobStatusEnum.APPROVED);
+
+        JobPosting savedJob = jobPostingRepository.save(job);
+
+        return JobResponse.builder()
+                .id(savedJob.getId())
+                .title(savedJob.getTitle())
+                .description(savedJob.getDescription())
+                .salaryRange(savedJob.getSalaryRange())
+                .status(savedJob.getStatus())
+                .employerUsername(savedJob.getEmployer().getUsername())
+                .build();
+    }
+
+    @Override
+    public JobResponse rejectJob(Long id) {
+        JobPosting job = jobPostingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundJob("Không tìm thấy tin tuyển dụng"));
+
+        job.setStatus(JobStatusEnum.REJECTED);
+
+        JobPosting savedJob = jobPostingRepository.save(job);
+
+        return JobResponse.builder()
+                .id(savedJob.getId())
+                .title(savedJob.getTitle())
+                .description(savedJob.getDescription())
+                .salaryRange(savedJob.getSalaryRange())
+                .status(savedJob.getStatus())
+                .employerUsername(savedJob.getEmployer().getUsername())
+                .build();
+    }
 }

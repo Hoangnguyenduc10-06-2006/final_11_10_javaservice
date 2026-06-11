@@ -140,6 +140,24 @@ public class GlobalExceptionHandler {
         );
     }
 
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ApiDataResponse<String>>
+    handleEmailExist(ForbiddenException ex) {
+
+        return new ResponseEntity<>(
+                new ApiDataResponse<>(
+                        false,
+                        "Bạn không có quyền xóa tin này",
+                        null,
+                        ex.getMessage(),
+                        HttpStatus.UNAUTHORIZED
+                ),
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+
+
     @ExceptionHandler(ConfirmPassNotTrue.class)
     public ResponseEntity<ApiDataResponse<String>>
     handleConfirmPassNotTrue(ConfirmPassNotTrue ex) {

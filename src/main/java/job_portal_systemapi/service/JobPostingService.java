@@ -19,4 +19,9 @@ public interface JobPostingService {
     JobResponse getJobForCandidateById(Long id);
 
     // bên admin
+    List<JobResponse> getAllJobsForAdmin();
+
+    JobResponse approveJob(Long id);
+
+    JobResponse rejectJob(Long id);
 }

@@ -1,10 +1,7 @@
 package job_portal_systemapi.controller;
 
 
-import job_portal_systemapi.model.dto.request.LoginRequest;
-import job_portal_systemapi.model.dto.request.LogoutRequest;
-import job_portal_systemapi.model.dto.request.RefreshTokenRequest;
-import job_portal_systemapi.model.dto.request.RegisterRequest;
+import job_portal_systemapi.model.dto.request.*;
 import job_portal_systemapi.model.dto.response.ApiDataResponse;
 import job_portal_systemapi.model.dto.response.JWTResponse;
 import job_portal_systemapi.model.dto.response.UserResponse;
@@ -83,8 +80,48 @@ public class AuthController {
         ), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("Token hợp lệ");
+    @PutMapping("/change-password")
+    public ResponseEntity<ApiDataResponse<String>> changePassword(
+            @Valid @RequestBody ChangePasswordRequest request
+    ) {
+        authService.changePassword(request);
+
+        return ResponseEntity.ok(new ApiDataResponse<>(
+                true,
+                "Đổi mật khẩu thành công",
+                null,
+                null,
+                HttpStatus.OK
+        ));
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<ApiDataResponse<String>> forgotPassword(
+            @Valid @RequestBody ForgotPasswordRequest request
+    ) {
+        String token = authService.forgotPassword(request);
+
+        return ResponseEntity.ok(new ApiDataResponse<>(
+                true,
+                "Tạo token đặt lại mật khẩu thành công",
+                token,
+                null,
+                HttpStatus.OK
+        ));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<ApiDataResponse<String>> resetPassword(
+            @Valid @RequestBody ResetPasswordRequest request
+    ) {
+        authService.resetPassword(request);
+
+        return ResponseEntity.ok(new ApiDataResponse<>(
+                true,
+                "Đặt lại mật khẩu thành công",
+                null,
+                null,
+                HttpStatus.OK
+        ));
     }
 }

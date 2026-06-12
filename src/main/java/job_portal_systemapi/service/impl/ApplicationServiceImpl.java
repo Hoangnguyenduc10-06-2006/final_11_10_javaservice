@@ -2,10 +2,7 @@ package job_portal_systemapi.service.impl;
 
 import job_portal_systemapi.enums.ApplicationStatusEnum;
 import job_portal_systemapi.enums.JobStatusEnum;
-import job_portal_systemapi.exception.AppliExistJob;
-import job_portal_systemapi.exception.NotFoundJob;
-import job_portal_systemapi.exception.NotFoundUser;
-import job_portal_systemapi.exception.jobStatusException;
+import job_portal_systemapi.exception.*;
 import job_portal_systemapi.model.dto.request.ApplyJobRequest;
 import job_portal_systemapi.model.dto.request.UpdateApplicationStatusRequest;
 import job_portal_systemapi.model.dto.response.ApplicationResponse;
@@ -115,12 +112,11 @@ public class ApplicationServiceImpl implements ApplicationService {
                 .orElseThrow(() -> new NotFoundUser("Không tìm thấy employer"));
 
         Application application = applicationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy hồ sơ ứng tuyển"));
+                .orElseThrow(() -> new NotFoundApplication("Không tìm thấy hồ sơ ứng tuyển"));
 
         if (!application.getJobPosting().getEmployer().getId().equals(employer.getId())) {
-            throw new RuntimeException("Bạn không có quyền cập nhật hồ sơ này");
+            throw new ForbiddenException("Bạn không có quyền cập nhật hồ sơ này");
         }
-
         application.setStatus(request.getStatus());
 
         Application saved = applicationRepository.save(application);

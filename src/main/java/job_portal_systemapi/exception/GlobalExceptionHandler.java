@@ -108,6 +108,22 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler(NotFoundApplication.class)
+    public ResponseEntity<ApiDataResponse<String>>
+    handleNotFoundUser(NotFoundApplication ex) {
+
+        return new ResponseEntity<>(
+                new ApiDataResponse<>(
+                        false,
+                        "Không tìm thấy hồ sơ ứng tuyển",
+                        null,
+                        ex.getMessage(),
+                        HttpStatus.NOT_FOUND
+                ),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
     @ExceptionHandler(AppliExistJob.class)
     public ResponseEntity<ApiDataResponse<String>>
     handleEmailExist(AppliExistJob ex) {
@@ -173,6 +189,40 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST
         );
     }
+
+    @ExceptionHandler(NotTruePasoOld.class)
+    public ResponseEntity<ApiDataResponse<String>>
+    handleConfirmPassNotTrue(NotTruePasoOld ex) {
+
+        return new ResponseEntity<>(
+                new ApiDataResponse<>(
+                        false,
+                        "Mật khẩu cũ không đúng",
+                        null,
+                        ex.getMessage(),
+                        HttpStatus.BAD_REQUEST
+                ),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+    @ExceptionHandler(failUploadCV.class)
+    public ResponseEntity<ApiDataResponse<String>>
+    handleFailUploadCV(failUploadCV ex) {
+
+        return new ResponseEntity<>(
+                new ApiDataResponse<>(
+                        false,
+                        "Upload CV thất bại",
+                        null,
+                        ex.getMessage(),
+                        HttpStatus.BAD_REQUEST
+                ),
+                HttpStatus.BAD_REQUEST
+        );
+    }
+
+
 
     @ExceptionHandler(JWTValidate.class)
     public ResponseEntity<ApiDataResponse<String>>

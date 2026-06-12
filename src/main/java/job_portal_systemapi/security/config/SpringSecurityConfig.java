@@ -36,23 +36,26 @@ public class SpringSecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(
+                                "/api/auth/register",
+                                "/api/auth/login",
+                                "/api/auth/refresh",
+                                "/api/auth/forgot-password",
+                                "/api/auth/reset-password"
+                        ).permitAll()
 
-                        .requestMatchers("/api/v1/admin/**")
-                        .hasRole("ADMIN")
+                        .requestMatchers("/api/auth/change-password").authenticated()
+                        .requestMatchers("/api/auth/logout").authenticated()
 
-                        .requestMatchers("/api/v1/employer/**")
-                        .hasRole("EMPLOYER")
-
-                        .requestMatchers("/api/v1/candidate/**")
-                        .hasRole("CANDIDATE")
+                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/employer/**").hasRole("EMPLOYER")
+                        .requestMatchers("/api/v1/candidate/**").hasRole("CANDIDATE")
 
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex ->
                         ex.authenticationEntryPoint(authenticationEntryPoint)
                 )
-                .authenticationProvider(authenticationProvider())
                 .cors(Customizer.withDefaults())
                 .sessionManagement(ss -> ss.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

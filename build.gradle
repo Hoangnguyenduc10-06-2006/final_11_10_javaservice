@@ -43,6 +43,8 @@ dependencies {
 
     // Source: https://mvnrepository.com/artifact/org.mindrot/jbcrypt
     implementation("org.mindrot:jbcrypt:0.4")
+    implementation("com.cloudinary:cloudinary-core:2.4.0")
+    implementation("com.cloudinary:cloudinary-http5:2.4.0")
 }
 
 tasks.named('test') {

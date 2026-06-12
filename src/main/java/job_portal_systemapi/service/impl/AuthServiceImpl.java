@@ -1,19 +1,15 @@
 package job_portal_systemapi.service.impl;
 
 import job_portal_systemapi.enums.RoleEnum;
-import job_portal_systemapi.exception.ConfirmPassNotTrue;
-import job_portal_systemapi.exception.EmailExist;
-import job_portal_systemapi.exception.NotFoundUser;
-import job_portal_systemapi.exception.UsernameExist;
-import job_portal_systemapi.model.dto.request.LoginRequest;
-import job_portal_systemapi.model.dto.request.LogoutRequest;
-import job_portal_systemapi.model.dto.request.RefreshTokenRequest;
-import job_portal_systemapi.model.dto.request.RegisterRequest;
+import job_portal_systemapi.exception.*;
+import job_portal_systemapi.model.dto.request.*;
 import job_portal_systemapi.model.dto.response.JWTResponse;
 import job_portal_systemapi.model.dto.response.UserResponse;
+import job_portal_systemapi.model.entity.PasswordResetToken;
 import job_portal_systemapi.model.entity.RefreshToken;
 import job_portal_systemapi.model.entity.TokenBlacklist;
 import job_portal_systemapi.model.entity.Users;
+import job_portal_systemapi.repository.PasswordResetTokenRepository;
 import job_portal_systemapi.repository.TokenBlacklistRepository;
 import job_portal_systemapi.repository.UserRepository;
 import job_portal_systemapi.security.jwt.JWTProvider;
@@ -25,15 +21,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-
+    private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -162,5 +160,77 @@ public class AuthServiceImpl implements AuthService {
                 .users(users)
                 .build();
         tokenBlacklistRepository.save(tokenBlacklist);
+    }
+    @Override
+    public void changePassword(ChangePasswordRequest request) {
+
+        CustomUserDetails userDetails =
+                (CustomUserDetails) SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getPrincipal();
+
+        Users user = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new NotFoundUser("Không tìm thấy user"));
+
+        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+            throw new NotTruePasoOld("Mật khẩu cũ không đúng");
+        }
+
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new ConfirmPassNotTrue("Mật khẩu xác nhận không khớp");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public String forgotPassword(ForgotPasswordRequest request) {
+
+        Users user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new NotFoundUser("Email không tồn tại"));
+
+        String token = UUID.randomUUID().toString();
+
+        PasswordResetToken resetToken = PasswordResetToken.builder()
+                .token(token)
+                .expiryDate(LocalDateTime.now().plusMinutes(15))
+                .used(false)
+                .user(user)
+                .build();
+
+        passwordResetTokenRepository.save(resetToken);
+
+        return token;
+    }
+
+    @Override
+    public void resetPassword(ResetPasswordRequest request) {
+
+        PasswordResetToken resetToken = passwordResetTokenRepository
+                .findByToken(request.getToken())
+                .orElseThrow(() -> new JWTValidate("Token reset password không tồn tại"));
+
+        if (resetToken.getUsed()) {
+            throw new JWTValidate("Token reset password đã được sử dụng");
+        }
+
+        if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
+            throw new JWTValidate("Token reset password đã hết hạn");
+        }
+
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new ConfirmPassNotTrue("Mật khẩu xác nhận không khớp");
+        }
+
+        Users user = resetToken.getUser();
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+
+        resetToken.setUsed(true);
+
+        userRepository.save(user);
+        passwordResetTokenRepository.save(resetToken);
     }
 }

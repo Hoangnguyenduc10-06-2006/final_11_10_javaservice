@@ -45,6 +45,8 @@ dependencies {
     implementation("org.mindrot:jbcrypt:0.4")
     implementation("com.cloudinary:cloudinary-core:2.4.0")
     implementation("com.cloudinary:cloudinary-http5:2.4.0")
+
+    implementation("org.springframework.boot:spring-boot-starter-aop:4.0.0-M2")
 }
 
 tasks.named('test') {

@@ -20,12 +20,7 @@ public class FileServiceImpl implements FileService {
     public UploadCVResponse uploadCV(MultipartFile file) {
 
         try {
-            Map uploadResult = cloudinary.uploader().upload(
-                    file.getBytes(),
-                    Map.of(
-                            "resource_type", "auto"
-                    )
-            );
+            Map uploadResult = cloudinary.uploader().upload(file.getBytes(), Map.of("resource_type", "auto"));
 
             return UploadCVResponse.builder()
                     .fileName(file.getOriginalFilename())
@@ -33,7 +28,7 @@ public class FileServiceImpl implements FileService {
                     .build();
 
         } catch (Exception e) {
-            throw new failUploadCV("Upload CV thất bại");
+            throw new failUploadCV("Upload CV thất bại"+e.getMessage());
         }
     }
 }

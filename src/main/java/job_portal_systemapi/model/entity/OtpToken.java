@@ -6,28 +6,26 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "password_reset_tokens")
+@Table(name = "otp_tokens")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PasswordResetToken {
-
+public class OtpToken{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String token;
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
-    private LocalDateTime expiryDate;
+    private String otp;
+
+    @Column(nullable = false)
+    private LocalDateTime expiryTime;
 
     @Column(nullable = false)
     private Boolean used;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users user;
 }

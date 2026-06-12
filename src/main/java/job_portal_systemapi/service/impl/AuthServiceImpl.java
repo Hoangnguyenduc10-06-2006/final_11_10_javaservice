@@ -5,17 +5,14 @@ import job_portal_systemapi.exception.*;
 import job_portal_systemapi.model.dto.request.*;
 import job_portal_systemapi.model.dto.response.JWTResponse;
 import job_portal_systemapi.model.dto.response.UserResponse;
-import job_portal_systemapi.model.entity.PasswordResetToken;
-import job_portal_systemapi.model.entity.RefreshToken;
-import job_portal_systemapi.model.entity.TokenBlacklist;
-import job_portal_systemapi.model.entity.Users;
-import job_portal_systemapi.repository.PasswordResetTokenRepository;
+import job_portal_systemapi.model.entity.*;
+import job_portal_systemapi.repository.OtpTokenRepository;
 import job_portal_systemapi.repository.TokenBlacklistRepository;
 import job_portal_systemapi.repository.UserRepository;
 import job_portal_systemapi.security.jwt.JWTProvider;
 import job_portal_systemapi.security.principal.CustomUserDetails;
-import job_portal_systemapi.security.principal.CustomUserDetailsService;
 import job_portal_systemapi.service.AuthService;
+import job_portal_systemapi.service.EmailService;
 import job_portal_systemapi.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,12 +23,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private final PasswordResetTokenRepository passwordResetTokenRepository;
+    private final OtpTokenRepository otpTokenRepository;
+    private final EmailService emailService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -186,51 +184,51 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
     }
 
+
     @Override
-    public String forgotPassword(ForgotPasswordRequest request) {
+    public void sendForgotPasswordOtp(ForgotPasswordOtpRequest request) {
 
-        Users user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new NotFoundUser("Email không tồn tại"));
+        Users user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new NotFoundUser("Email không tồn tại"));
 
-        String token = UUID.randomUUID().toString();
+        String otp = generateOtp();
 
-        PasswordResetToken resetToken = PasswordResetToken.builder()
-                .token(token)
-                .expiryDate(LocalDateTime.now().plusMinutes(15))
+        OtpToken otpToken = OtpToken.builder()
+                .email(user.getEmail())
+                .otp(otp)
+                .expiryTime(LocalDateTime.now().plusMinutes(5))
                 .used(false)
-                .user(user)
                 .build();
 
-        passwordResetTokenRepository.save(resetToken);
+        otpTokenRepository.save(otpToken);
 
-        return token;
+        emailService.sendOtp(user.getEmail(), otp);
     }
 
     @Override
-    public void resetPassword(ResetPasswordRequest request) {
+    public void resetPasswordByOtp(ResetPasswordOtpRequest request) {
 
-        PasswordResetToken resetToken = passwordResetTokenRepository
-                .findByToken(request.getToken())
-                .orElseThrow(() -> new JWTValidate("Token reset password không tồn tại"));
+        OtpToken otpToken = otpTokenRepository.findTopByEmailAndOtpAndUsedFalseOrderByIdDesc(request.getEmail(), request.getOtp()).orElseThrow(() -> new JWTValidate("OTP không hợp lệ"));
 
-        if (resetToken.getUsed()) {
-            throw new JWTValidate("Token reset password đã được sử dụng");
-        }
-
-        if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
-            throw new JWTValidate("Token reset password đã hết hạn");
+        if (otpToken.getExpiryTime().isBefore(LocalDateTime.now())) {
+            throw new JWTValidate("OTP đã hết hạn");
         }
 
         if (!request.getNewPassword().equals(request.getConfirmPassword())) {
             throw new ConfirmPassNotTrue("Mật khẩu xác nhận không khớp");
         }
 
-        Users user = resetToken.getUser();
+        Users user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new NotFoundUser("Email không tồn tại"));
+
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
 
-        resetToken.setUsed(true);
+        otpToken.setUsed(true);
 
         userRepository.save(user);
-        passwordResetTokenRepository.save(resetToken);
+        otpTokenRepository.save(otpToken);
+    }
+
+    private String generateOtp() {
+        int otp = (int) (Math.random() * 900000) + 100000;
+        return String.valueOf(otp);
     }
 }

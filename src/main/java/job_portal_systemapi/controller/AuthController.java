@@ -69,8 +69,8 @@ public class AuthController {
             @RequestHeader("Authorization") String authorization,
             @Valid @RequestBody LogoutRequest request
     ) {
-        authService.logout(authorization, request);
 
+        authService.logout(authorization, request);
         return new ResponseEntity<>(new ApiDataResponse<>(
                 true,
                 "Đăng xuất thành công",
@@ -86,42 +86,44 @@ public class AuthController {
     ) {
         authService.changePassword(request);
 
-        return ResponseEntity.ok(new ApiDataResponse<>(
+        return new ResponseEntity<>(new ApiDataResponse<>(
                 true,
                 "Đổi mật khẩu thành công",
                 null,
                 null,
                 HttpStatus.OK
-        ));
+        ),HttpStatus.OK);
     }
 
-    @PostMapping("/forgot-password")
-    public ResponseEntity<ApiDataResponse<String>> forgotPassword(
-            @Valid @RequestBody ForgotPasswordRequest request
-    ) {
-        String token = authService.forgotPassword(request);
 
-        return ResponseEntity.ok(new ApiDataResponse<>(
+
+    @PostMapping("/forgot-password-otp")
+    public ResponseEntity<ApiDataResponse<String>> forgotPasswordOtp(
+            @Valid @RequestBody ForgotPasswordOtpRequest request
+    ) {
+        authService.sendForgotPasswordOtp(request);
+
+        return new ResponseEntity<>(new ApiDataResponse<>(
                 true,
-                "Tạo token đặt lại mật khẩu thành công",
-                token,
+                "OTP đã được gửi về email",
+                null,
                 null,
                 HttpStatus.OK
-        ));
+        ), HttpStatus.OK);
     }
 
-    @PostMapping("/reset-password")
-    public ResponseEntity<ApiDataResponse<String>> resetPassword(
-            @Valid @RequestBody ResetPasswordRequest request
+    @PostMapping("/reset-password-otp")
+    public ResponseEntity<ApiDataResponse<String>> resetPasswordOtp(
+            @Valid @RequestBody ResetPasswordOtpRequest request
     ) {
-        authService.resetPassword(request);
+        authService.resetPasswordByOtp(request);
 
-        return ResponseEntity.ok(new ApiDataResponse<>(
+        return new ResponseEntity<>(new ApiDataResponse<>(
                 true,
                 "Đặt lại mật khẩu thành công",
                 null,
                 null,
                 HttpStatus.OK
-        ));
+        ), HttpStatus.OK);
     }
 }

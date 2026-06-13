@@ -719,3 +719,275 @@ job_portal_systemapi.exception.JWTValidate: Chuỗi JWT hết hạn
 2026-06-13T01:04:09.936+07:00  INFO 18580 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 5.326 seconds (process running for 6.029)
 2026-06-13T01:04:29.311+07:00  INFO 18580 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-06-13T01:04:29.317+07:00  INFO 18580 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T01:13:02.299+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 7380 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T01:13:02.304+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : No active profile set, falling back to 1 default profile: "default"
+2026-06-13T01:13:03.814+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T01:13:03.814+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T01:13:04.468+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T01:13:04.740+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3957cbbd
+2026-06-13T01:13:04.742+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T01:13:04.788+07:00  WARN 7380 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T01:13:06.453+07:00  WARN 7380 --- [Job_portal_SystemAPI] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T01:13:06.588+07:00  WARN 7380 --- [Job_portal_SystemAPI] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T01:13:07.679+07:00  INFO 7380 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 5.878 seconds (process running for 6.733)
+2026-06-13T01:18:28.403+07:00  INFO 7380 --- [Job_portal_SystemAPI] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-13T01:18:28.877+07:00  INFO 7380 --- [Job_portal_SystemAPI] [http-nio-8080-exec-1] j.security.jwt.JWTProvider               : Chuỗi JWT hết hạn
+2026-06-13T01:18:28.878+07:00 ERROR 7380 --- [Job_portal_SystemAPI] [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+job_portal_systemapi.exception.JWTValidate: Chuỗi JWT hết hạn
+	at job_portal_systemapi.security.jwt.JWTProvider.validateToken(JWTProvider.java:62) ~[main/:na]
+	at job_portal_systemapi.security.jwt.JWTFilter.doFilterInternal(JWTFilter.java:31) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-06-13T01:20:39.255+07:00  INFO 7380 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T01:20:39.261+07:00  INFO 7380 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T01:20:45.324+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 1816 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T01:20:45.327+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : No active profile set, falling back to 1 default profile: "default"
+2026-06-13T01:20:46.644+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T01:20:46.644+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T01:20:47.265+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T01:20:47.516+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7cd04cd4
+2026-06-13T01:20:47.518+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T01:20:47.561+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T01:20:49.031+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T01:20:49.150+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T01:20:50.111+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 5.107 seconds (process running for 5.717)
+2026-06-13T01:20:55.849+07:00  INFO 1816 --- [Job_portal_SystemAPI] [http-nio-8080-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-13T01:20:56.445+07:00  INFO 1816 --- [Job_portal_SystemAPI] [http-nio-8080-exec-8] j.security.jwt.JWTProvider               : Chuỗi JWT hết hạn
+2026-06-13T01:20:56.446+07:00 ERROR 1816 --- [Job_portal_SystemAPI] [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+job_portal_systemapi.exception.JWTValidate: Chuỗi JWT hết hạn
+	at job_portal_systemapi.security.jwt.JWTProvider.validateToken(JWTProvider.java:62) ~[main/:na]
+	at job_portal_systemapi.security.jwt.JWTFilter.doFilterInternal(JWTFilter.java:31) ~[main/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:110) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:96) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:385) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:237) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:195) ~[spring-security-web-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:317) ~[spring-security-config-7.0.5.jar:7.0.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:355) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:272) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2026-06-13T01:22:06.229+07:00  INFO 1816 --- [Job_portal_SystemAPI] [http-nio-8080-exec-4] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [EmailServiceImpl.sendOtp(..)] thực thi thành công trong 13704 ms
+2026-06-13T01:22:06.229+07:00  INFO 1816 --- [Job_portal_SystemAPI] [http-nio-8080-exec-4] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.sendForgotPasswordOtp(..)] thực thi thành công trong 13776 ms
+2026-06-13T01:23:32.262+07:00  INFO 1816 --- [Job_portal_SystemAPI] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T01:23:32.267+07:00  INFO 1816 --- [Job_portal_SystemAPI] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T01:23:32.351+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 1816 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T01:23:32.351+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : No active profile set, falling back to 1 default profile: "default"
+2026-06-13T01:23:32.737+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T01:23:32.738+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T01:23:32.866+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-06-13T01:23:32.880+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@74b921c
+2026-06-13T01:23:32.881+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-06-13T01:23:32.884+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T01:23:33.253+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authController' defined in file [E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main\job_portal_systemapi\controller\AuthController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'authServiceImpl' defined in file [E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main\job_portal_systemapi\service\impl\AuthServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 3: No qualifying bean of type 'org.springframework.security.crypto.password.PasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2026-06-13T01:23:33.254+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-06-13T01:23:33.278+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2026-06-13T01:23:33.279+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-06-13T01:23:33.299+07:00 ERROR 1816 --- [Job_portal_SystemAPI] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 3 of constructor in job_portal_systemapi.service.impl.AuthServiceImpl required a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' in your configuration.
+
+2026-06-13T01:23:34.758+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 1816 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T01:23:34.758+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : No active profile set, falling back to 1 default profile: "default"
+2026-06-13T01:23:35.082+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T01:23:35.083+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T01:23:35.177+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-06-13T01:23:35.188+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f89e4ac
+2026-06-13T01:23:35.188+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-06-13T01:23:35.189+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T01:23:35.545+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T01:23:35.645+07:00  WARN 1816 --- [Job_portal_SystemAPI] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T01:23:36.135+07:00  INFO 1816 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 1.401 seconds (process running for 171.741)
+2026-06-13T10:46:45.896+07:00  WARN 1816 --- [Job_portal_SystemAPI] [HikariPool-3:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=8h26m39s819ms17µs500ns).
+2026-06-13T11:27:56.015+07:00  INFO 1816 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-06-13T11:27:56.019+07:00  INFO 1816 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2026-06-13T12:22:41.882+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 23240 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T12:22:41.885+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : The following 1 profile is active: "dev"
+2026-06-13T12:22:43.451+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T12:22:43.451+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T12:22:44.114+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T12:22:44.486+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@609013fd
+2026-06-13T12:22:44.489+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T12:22:44.578+07:00  WARN 23240 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T12:22:46.229+07:00  WARN 23240 --- [Job_portal_SystemAPI] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T12:22:46.355+07:00  WARN 23240 --- [Job_portal_SystemAPI] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T12:22:47.381+07:00  INFO 23240 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 5.876 seconds (process running for 6.811)
+2026-06-13T12:23:11.417+07:00  INFO 23240 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T12:23:11.428+07:00  INFO 23240 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T12:23:14.915+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 25136 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T12:23:14.918+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : The following 1 profile is active: "test"
+2026-06-13T12:23:16.266+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T12:23:16.267+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T12:23:16.868+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T12:23:17.038+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:dbtest user=SA
+2026-06-13T12:23:17.040+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T12:23:17.058+07:00  WARN 25136 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T12:23:18.477+07:00  WARN 25136 --- [Job_portal_SystemAPI] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T12:23:18.601+07:00  WARN 25136 --- [Job_portal_SystemAPI] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T12:23:19.622+07:00  INFO 25136 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 5.055 seconds (process running for 5.608)
+2026-06-13T12:23:35.512+07:00  WARN 25136 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240]
+2026-06-13T12:23:35.513+07:00  INFO 25136 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T12:23:35.514+07:00  INFO 25136 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T12:23:38.067+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Starting JobPortalSystemApi1Application using Java 17.0.18 with PID 22152 (E:\java_WEB_Service\final_11_10_javaservice\build\classes\java\main started by Admin in E:\java_WEB_Service\final_11_10_javaservice)
+2026-06-13T12:23:38.070+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : The following 1 profile is active: "test"
+2026-06-13T12:23:39.447+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-13T12:23:39.448+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-13T12:23:40.062+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T12:23:40.198+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:dbtest user=SA
+2026-06-13T12:23:40.200+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T12:23:40.218+07:00  WARN 22152 --- [Job_portal_SystemAPI] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T12:23:41.639+07:00  WARN 22152 --- [Job_portal_SystemAPI] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T12:23:41.760+07:00  WARN 22152 --- [Job_portal_SystemAPI] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T12:23:42.716+07:00  INFO 22152 --- [Job_portal_SystemAPI] [restartedMain] j.JobPortalSystemApi1Application         : Started JobPortalSystemApi1Application in 4.996 seconds (process running for 5.524)
+2026-06-13T12:23:44.331+07:00  WARN 22152 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] o.s.b.f.support.DisposableBeanAdapter    : Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-240]
+2026-06-13T12:23:44.332+07:00  INFO 22152 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T12:23:44.333+07:00  INFO 22152 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T12:24:02.763+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T12:24:02.885+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:dbtest user=SA
+2026-06-13T12:24:02.887+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T12:24:02.905+07:00  WARN 14792 --- [Job_portal_SystemAPI] [Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T12:24:04.507+07:00  WARN 14792 --- [Job_portal_SystemAPI] [Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T12:24:04.686+07:00  WARN 14792 --- [Job_portal_SystemAPI] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T12:24:07.400+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 804 ms
+2026-06-13T12:24:07.405+07:00 ERROR 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thất bại sau 2 ms. Lỗi: Username đã tồn tại
+2026-06-13T12:24:07.494+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserEMPLOYER(..)] thực thi thành công trong 69 ms
+2026-06-13T12:24:07.570+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 69 ms
+2026-06-13T12:24:07.649+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 71 ms
+2026-06-13T12:24:07.888+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [RefreshTokenServiceImpl.createRefreshToken(..)] thực thi thành công trong 9 ms
+2026-06-13T12:24:07.889+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.login(..)] thực thi thành công trong 239 ms
+2026-06-13T12:24:07.964+07:00  INFO 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 70 ms
+2026-06-13T12:24:08.026+07:00 ERROR 14792 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.login(..)] thực thi thất bại sau 61 ms. Lỗi: Bad credentials
+2026-06-13T12:24:08.064+07:00  INFO 14792 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T12:24:08.067+07:00  INFO 14792 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-13T12:24:21.825+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-13T12:24:21.955+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:dbtest user=SA
+2026-06-13T12:24:21.957+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-13T12:24:21.977+07:00  WARN 26704 --- [Job_portal_SystemAPI] [Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-06-13T12:24:23.676+07:00  WARN 26704 --- [Job_portal_SystemAPI] [Test worker] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-13T12:24:23.856+07:00  WARN 26704 --- [Job_portal_SystemAPI] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-13T12:24:26.509+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 654 ms
+2026-06-13T12:24:26.514+07:00 ERROR 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thất bại sau 2 ms. Lỗi: Username đã tồn tại
+2026-06-13T12:24:26.599+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserEMPLOYER(..)] thực thi thành công trong 65 ms
+2026-06-13T12:24:26.673+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 67 ms
+2026-06-13T12:24:26.748+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 67 ms
+2026-06-13T12:24:26.984+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [RefreshTokenServiceImpl.createRefreshToken(..)] thực thi thành công trong 8 ms
+2026-06-13T12:24:26.985+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.login(..)] thực thi thành công trong 236 ms
+2026-06-13T12:24:27.062+07:00  INFO 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.registerUserCANDIDATE(..)] thực thi thành công trong 70 ms
+2026-06-13T12:24:27.124+07:00 ERROR 26704 --- [Job_portal_SystemAPI] [Test worker] j.aspect.ExecutionTimeLoggingAspect      : Phương thức [AuthServiceImpl.login(..)] thực thi thất bại sau 60 ms. Lỗi: Bad credentials
+2026-06-13T12:24:27.160+07:00  INFO 26704 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-13T12:24:27.163+07:00  INFO 26704 --- [Job_portal_SystemAPI] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
